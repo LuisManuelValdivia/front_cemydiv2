@@ -4,9 +4,8 @@ import "./globals.css";
 import Link from "next/link";
 import { Providers } from "./providers";
 import HeaderNav from "@/components/ui/HeaderNav";
-
-
-import Script from 'next/script'
+import { inter, montserrat } from "./fonts";
+import Script from "next/script";
 
 
 export const metadata = {
@@ -32,31 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
       </head>
-      <body style={{ margin: 0, padding: 0, backgroundColor: "#fff" }}>
+      <body className={`${inter.variable} ${montserrat.variable} app-shell m-0 p-0`}>
         <Providers>
-          {/* HEADER (Vidrio y degradado) */}
-          <header
-            style={{
-              background: "linear-gradient(90deg, #1e6260 0%, #2aa09d 100%)",
-              color: "#fff",
-              width: "100%",
-              position: "relative",
-              zIndex: 10,
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                boxSizing: "border-box",
-                padding: "20px 40px",
-                display: "grid",
-                gridTemplateColumns: "auto 1fr auto",
-                gap: "40px",
-                alignItems: "center",
-              }}
-            >
-              {/* LOGO */}
-              <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+          <header className="sticky top-0 z-20 w-full bg-gradient-to-r from-[#1e6260] to-[#2aa09d] text-white shadow-[0_8px_30px_rgba(15,61,59,0.2)]">
+            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-4 px-4 py-4 md:grid-cols-[auto_1fr_auto] md:gap-8 md:px-8">
+              <Link href="/" className="flex items-center justify-center md:justify-start">
                 <img
                   src="/logo01.png"
                   alt="CEMYDI"
@@ -65,45 +44,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   style={{ display: "block", objectFit: "contain" }}
                 />
               </Link>
-              
-              {/* BUSCADOR */}
-              <form action="/catalogo" style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                {/* SOLUCIÓN WAVE:
-                   Agregamos 'aria-label' para describir el campo a las herramientas de accesibilidad
-                   sin afectar el diseño visual.
-                */}
+
+              <form action="/catalogo" className="flex w-full justify-center">
                 <input
                   type="search"
                   name="q"
-                  aria-label="Buscar productos" 
+                  aria-label="Buscar productos"
                   placeholder="Buscar productos..."
-                  style={{
-                    width: "100%",
-                    maxWidth: "500px",
-                    height: 48,
-                    borderRadius: "999px",
-                    background: "rgba(255, 255, 255, 0.15)",
-                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                    color: "#fff",
-                    padding: "0 24px",
-                    outline: "none",
-                    fontSize: "0.95rem",
-                    fontWeight: "500",
-                    boxShadow: "inset 0 1px 2px rgba(0,0,0,0.1)",
-                  }}
+                  className="h-12 w-full max-w-[520px] rounded-full border border-white/30 bg-white/15 px-6 text-sm font-medium text-white outline-none placeholder:text-white/80 focus:border-white/70 focus:ring-2 focus:ring-white/30"
                 />
               </form>
-              
-              {/* NAVEGACIÓN */}
+
               <HeaderNav />
             </div>
           </header>
 
-          <main style={{ width: "100%", maxWidth: "100vw", margin: "0 auto", padding: "0" }}>
-            {children}
-          </main>
+          <main className="w-full max-w-[100vw]">{children}</main>
 
-          {/* FOOTER INCRUSTADO */}
           <Footer />
         </Providers>
       </body>
@@ -114,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 // --- COMPONENTE FOOTER ESTILO TANDYM ---
 function Footer() {
   return (
-    <footer className="bg-[#0b2e2b] text-white pt-20 pb-10 border-t border-[#1a4a45]">
+    <footer className="border-t border-[#1a4a45] bg-[#0b2e2b] pb-10 pt-20 text-white">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         
         {/* COLUMNA 1: Marca y Redes */}

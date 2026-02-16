@@ -1,169 +1,67 @@
-//components/ui/HeaderNav.tsx
-
 "use client";
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
+const baseLink =
+  "rounded-full px-4 py-2 text-sm font-semibold text-white/95 transition hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
+
+const iconLink =
+  "flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
+
 export default function HeaderNav() {
   const { data: session, status } = useSession();
 
-  // --- ESTILOS VISUALES ---
-
-  // 1. Enlaces de texto (Ahora con transición de fondo y bordes redondos)
-  const textLinkStyle = {
-    textDecoration: "none",
-    color: "#fff",
-    fontWeight: 700,
-    fontSize: "0.95rem",
-    padding: "8px 16px",
-    borderRadius: "999px",
-    transition: "background-color 0.2s ease, opacity 0.2s ease",
-    cursor: "pointer",
-  };
-
-  const outlineBtnStyle = {
-    textDecoration: "none",
-    color: "#fff",
-    fontWeight: 700,
-    fontSize: "0.95rem",
-    padding: "10px 24px",
-    border: "2px solid rgba(255, 255, 255, 0.9)",
-    borderRadius: "999px",
-    backgroundColor: "transparent",
-    transition: "all 0.2s ease",
-    display: "inline-block",
-  };
-
-  const solidBtnStyle = {
-    textDecoration: "none",
-    color: "#1e6260",
-    fontWeight: 800,
-    fontSize: "0.95rem",
-    padding: "10px 24px",
-    backgroundColor: "#ffffff",
-    borderRadius: "999px",
-    border: "2px solid #ffffff",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-    transition: "transform 0.2s ease, box-shadow 0.2s ease",
-    display: "inline-block",
-  };
-
-  const iconStyle = {
-    color: "#fff",
-    padding: "10px",
-    borderRadius: "50%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transition: "background-color 0.2s ease",
-    cursor: "pointer",
-  };
-
-  // Función helper para el efecto hover
-  const handleHover = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, isHovering: boolean) => {
-    e.currentTarget.style.backgroundColor = isHovering ? "rgba(255,255,255,0.15)" : "transparent";
-  };
-
-  if (status === "loading") return <div style={{ color: "white" }}>...</div>;
+  if (status === "loading") return <div className="text-sm text-white/80">...</div>;
 
   return (
-    <nav style={{ display: "flex", alignItems: "center", gap: 8, justifySelf: "end" }}>
-      
-      {/* 1. Catálogo siempre visible */}
-      <Link 
-        href="/catalogo" 
-        style={textLinkStyle}
-        onMouseEnter={(e) => handleHover(e, true)}
-        onMouseLeave={(e) => handleHover(e, false)}
-      >
+    <nav className="flex items-center justify-center gap-2 md:justify-end">
+      <Link href="/catalogo" className={baseLink}>
         Catálogo
       </Link>
 
-      {/* --- USUARIO VISITANTE --- */}
       {!session && (
-        <div style={{ display: "flex", gap: 12, alignItems: "center", marginLeft: 8 }}>
-          <Link 
-            href="/login" 
-            style={outlineBtnStyle}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)"}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+        <div className="ml-1 flex items-center gap-2">
+          <Link
+            href="/login"
+            className="rounded-full border-2 border-white/80 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
           >
             Iniciar sesión
           </Link>
-          <Link 
-            href="/registro" 
-            style={solidBtnStyle}
-            onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.2)";
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-            }}
+          <Link
+            href="/registro"
+            className="rounded-full border-2 border-white bg-white px-5 py-2 text-sm font-bold text-[#1e6260] shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
           >
             Crear cuenta
           </Link>
         </div>
       )}
 
-      {/* --- USUARIO LOGUEADO --- */}
       {session && (
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          
-          {/* NUEVO: Mis rentas */}
-          <Link 
-            href="/mis-rentas" 
-            style={textLinkStyle}
-            onMouseEnter={(e) => handleHover(e, true)}
-            onMouseLeave={(e) => handleHover(e, false)}
-          >
+        <div className="ml-1 flex items-center gap-1">
+          <Link href="/mis-rentas" className={baseLink}>
             Mis rentas
           </Link>
-
-          {/* Mis compras */}
-          <Link 
-            href="/mis-compras" 
-            style={textLinkStyle}
-            onMouseEnter={(e) => handleHover(e, true)}
-            onMouseLeave={(e) => handleHover(e, false)}
-          >
+          <Link href="/mis-compras" className={baseLink}>
             Mis compras
           </Link>
 
-          {/* Carrito (ÍCONO) */}
-          <Link 
-            href="/carrito" 
-            style={iconStyle}
-            title="Ver carrito"
-            onMouseEnter={(e) => handleHover(e, true)}
-            onMouseLeave={(e) => handleHover(e, false)}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <Link href="/carrito" className={iconLink} title="Ver carrito" aria-label="Ver carrito">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="9" cy="21" r="1"></circle>
               <circle cx="20" cy="21" r="1"></circle>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
           </Link>
 
-          {/* Separador vertical */}
-          <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.2)", margin: "0 8px" }}></div>
+          <div className="mx-1 h-6 w-px bg-white/25" />
 
-          {/* Perfil (ÍCONO) */}
-          <Link 
-            href="/perfil" 
-            style={iconStyle}
-            title="Mi Perfil"
-            onMouseEnter={(e) => handleHover(e, true)}
-            onMouseLeave={(e) => handleHover(e, false)}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <Link href="/perfil" className={iconLink} title="Mi Perfil" aria-label="Mi perfil">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </Link>
-
         </div>
       )}
     </nav>
