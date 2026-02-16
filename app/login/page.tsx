@@ -1,4 +1,3 @@
-// app/login/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -28,8 +27,9 @@ export default function LoginPage() {
     const newErrors: typeof errors = {};
 
     if (!form.email) newErrors.email = "El correo es obligatorio.";
-    else if (!emailRegex.test(form.email))
+    else if (!emailRegex.test(form.email)) {
       newErrors.email = "El correo no tiene un formato válido.";
+    }
 
     if (!form.password) newErrors.password = "La contraseña es obligatoria.";
 
@@ -60,30 +60,33 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-[80vh] flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-5xl rounded-[2rem] shadow-2xl overflow-hidden grid md:grid-cols-2 min-h-[600px]">
-
-        {/* IMAGEN */}
-        <div className="relative hidden md:block bg-[#1e6260]">
+    <section className="auth-shell min-h-[82vh] px-4 py-10 md:py-14">
+      <div className="surface-card mx-auto grid w-full max-w-5xl overflow-hidden md:grid-cols-2">
+        <div className="relative hidden bg-[#1e6260] md:block">
           <Image
             src="/fondowan.png"
             alt="Bienvenido"
             fill
-            className="object-cover opacity-80 mix-blend-overlay"
+            className="object-cover opacity-85 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f3d3b] to-transparent opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f3d3b] via-[#1e6260]/70 to-transparent" />
+          <div className="absolute bottom-10 left-8 right-8 text-white">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-green-100">
+              CEMYDI
+            </p>
+            <h2 className="text-3xl font-bold">Bienvenido de vuelta</h2>
+            <p className="mt-2 text-sm text-green-100">Gestiona tus compras, rentas y datos personales en un solo lugar.</p>
+          </div>
         </div>
 
-        {/* FORM */}
-        <div className="p-8 md:p-16 flex flex-col justify-center">
-          <h1 className="text-3xl font-bold mb-6">Iniciar Sesión</h1>
+        <div className="bg-white p-7 md:p-12">
+          <h1 className="mb-2 text-3xl font-bold text-[#0f3d3b]">Iniciar sesión</h1>
+          <p className="mb-7 text-sm text-[#6b7280]">Accede con tu correo y contraseña.</p>
 
-          <form onSubmit={handleSubmit} noValidate className="space-y-6">
+          <form onSubmit={handleSubmit} noValidate className="space-y-5">
             {globalError && (
-              <div className="p-4 bg-red-50 text-red-600 text-sm rounded-xl">
-                {globalError}
-              </div>
+              <div className="rounded-[14px] border border-red-200 bg-red-50 p-3 text-sm text-red-600">{globalError}</div>
             )}
 
             <InputField
@@ -95,7 +98,7 @@ export default function LoginPage() {
               error={errors.email}
             />
 
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <InputField
                 id="password"
                 name="password"
@@ -106,30 +109,26 @@ export default function LoginPage() {
                 error={errors.password}
               />
 
-              {/* 👉 LINK AGREGADO AQUÍ */}
               <div className="flex justify-end">
-                <Link
-                  href="/recuperar"
-                  className="text-sm font-medium text-[#1e6260] hover:underline"
-                >
+                <Link href="/recuperar" className="text-sm font-medium text-[#1e6260] hover:text-[#154f4d] hover:underline">
                   ¿Olvidaste tu contraseña?
                 </Link>
               </div>
             </div>
 
-            <Button type="submit" disabled={loading} className="w-full py-4">
+            <Button type="submit" disabled={loading} className="w-full">
               {loading ? "Iniciando..." : "Entrar a mi cuenta"}
             </Button>
           </form>
 
-          <p className="mt-6 text-center text-sm">
+          <p className="mt-6 text-center text-sm text-[#6b7280]">
             ¿No tienes cuenta?{" "}
-            <Link href="/registro" className="font-bold text-[#1e6260]">
+            <Link href="/registro" className="font-bold text-[#1e6260] hover:text-[#154f4d]">
               Regístrate
             </Link>
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

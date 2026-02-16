@@ -9,15 +9,10 @@ export default function HomePage() {
     <>
       {}
       <section
-        className="
-          relative isolate text-white 
-          min-h-[600px] lg:min-h-[720px] 
-          flex items-center overflow-hidden
-          w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]
-        "
+        className="relative isolate flex min-h-[580px] w-screen -ml-[50vw] -mr-[50vw] items-center overflow-hidden text-white lg:min-h-[700px] left-1/2 right-1/2"
       >
         <Image src="/rehabilitacion.webp" alt="Fondo" fill priority className="object-cover object-center z-0" />
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#134e4a] via-[#1e6260]/90 to-transparent md:via-[#1e6260]/50" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0f3d3b] via-[#1e6260]/90 to-transparent md:via-[#1e6260]/55" />
 
         <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12">
           <div className="max-w-2xl">
@@ -28,7 +23,7 @@ export default function HomePage() {
               </span>
               <span className="text-xs font-bold tracking-widest uppercase text-green-50">Calidad Médica Certificada</span>
             </div>
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight drop-shadow-xl mb-6">
+            <h1 className="font-display mb-6 text-5xl font-bold leading-tight drop-shadow-xl md:text-7xl">
               Tu bienestar es <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-green-200">nuestra prioridad</span>
             </h1>
@@ -36,11 +31,11 @@ export default function HomePage() {
               Encuentra equipos, ortesis y suministros médicos de alta gama. Garantía clara, envíos seguros y asesoría de expertos.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/catalogo" className="group inline-flex items-center justify-center gap-2 bg-white text-[#134e4a] px-8 py-4 rounded-full font-bold text-lg shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] hover:transform hover:-translate-y-1 hover:shadow-[0_20px_30px_-5px_rgba(255,255,255,0.3)] transition-all duration-300">
+              <Link href="/catalogo" className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-bold text-[#134e4a] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_30px_-5px_rgba(255,255,255,0.3)]">
                 Explorar catálogo
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
-              <Link href="/registro" className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-lg text-white border border-white/30 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/80 transition-all duration-300">
+              <Link href="/registro" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/80 hover:bg-white/10">
                 Crear cuenta
               </Link>
             </div>

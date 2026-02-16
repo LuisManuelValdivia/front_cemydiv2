@@ -2,6 +2,22 @@
 
 /* === Tailwind v4: tokens de tema === */
 @theme {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-montserrat);
+
+  /* Brand palette */
+  --color-brand-900: #0f3d3b;
+  --color-brand-800: #154f4d;
+  --color-brand-700: #1e6260;
+  --color-brand-600: #2ba2a1;
+  --color-brand-500: #38b7b6;
+
+  --color-surface: #f4f7f7;
+  --color-card: #ffffff;
+  --color-border-soft: #deebeb;
+  --color-text-main: #111827;
+  --color-text-muted: #6b7280;
+
   --color-brand: #29A2A1;
   --color-brand-hover: #20626C;
   --color-brand-active: #1C6C53;
@@ -19,6 +35,54 @@
   --color-error:   #EE0000;
 
   --radius-xl: 12px; /* para rounded-xl */
+}
+
+:root {
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-soft: 0 8px 20px rgba(15, 61, 59, 0.08);
+  --shadow-md: 0 18px 40px rgba(15, 61, 59, 0.14);
+}
+
+html,
+body {
+  background: var(--color-surface);
+  color: var(--color-text-main);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
+
+.app-shell {
+  background: var(--color-surface);
+  min-height: 100vh;
+}
+
+.auth-shell {
+  background: linear-gradient(180deg, #eef7f6 0%, #f8fbfb 100%);
+}
+
+.surface-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
 }
 
 /* extras de accesibilidad que ya tenías */
@@ -162,4 +226,3 @@ button, a { min-height:44px; min-width:44px; }
   border:1px solid #D1D5DB; background:#fff; color:#111827; padding:12px 16px; border-radius:12px;
 }
 .help{ color:#6B7280; font-size:12px; }
-
